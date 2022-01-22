@@ -72,7 +72,7 @@ class PwdResetForm(PasswordResetForm):
         u = UserBase.objects.filter(email=email)
         if not u:
             raise forms.ValidationError(
-                'Unfortunatley we can not find that email address')
+                'Unfortunately we can not find that email address')
         return email
 
 
