@@ -37,8 +37,8 @@ class TestProductsModel(TestCase):
             slug='django-portfolio', price='20.00', image='django'
         )
         self.data2 = Product.products.create(
-            category_id=1, title='django advanced', created_by_id=1,
-            slug='django-advanced', price='20.00',
+            category_id=1, title='django test', created_by_id=1,
+            slug='django-test', price='20.00',
             image='django', is_active=False
         )
 
