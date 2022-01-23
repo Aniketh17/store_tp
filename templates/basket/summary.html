@@ -177,7 +177,7 @@
   // Delete Item
   $(document).on("click", ".delete-button", function (e) {
     e.preventDefault();
-    var prodid = $(this).data("index");
+    let prodid = $(this).data("index");
     $.ajax({
       type: "POST",
       url: '{% url "basket:basket_delete" %}',
@@ -209,7 +209,7 @@
   // Update Item
   $(document).on("click", ".update-button", function (e) {
     e.preventDefault();
-    var prodid = $(this).data("index");
+    let prodid = $(this).data("index");
     $.ajax({
       type: "POST",
       url: '{% url "basket:basket_update" %}',

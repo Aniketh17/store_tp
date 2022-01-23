@@ -7,6 +7,8 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
+from orders.views import user_orders
+
 from .forms import RegistrationForm, UserEditForm
 from .models import UserBase
 from .tokens import account_activation_token
@@ -14,8 +16,10 @@ from .tokens import account_activation_token
 
 @login_required
 def dashboard(request):
+    orders = user_orders(request)
     return render(request,
-                  'account/user/dashboard.html')
+                  'account/user/dashboard.html',
+                  {'section': 'profile', 'orders': orders})
 
 
 @login_required
@@ -42,15 +46,16 @@ def delete_user(request):
 
 
 def account_register(request):
+
     if request.user.is_authenticated:
         return redirect('account:dashboard')
 
     if request.method == 'POST':
-        register_form = RegistrationForm(request.POST)
-        if register_form.is_valid():
-            user = register_form.save(commit=False)
-            user.email = register_form.cleaned_data['email']
-            user.set_password(register_form.cleaned_data['password'])
+        registerForm = RegistrationForm(request.POST)
+        if registerForm.is_valid():
+            user = registerForm.save(commit=False)
+            user.email = registerForm.cleaned_data['email']
+            user.set_password(registerForm.cleaned_data['password'])
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
@@ -64,8 +69,8 @@ def account_register(request):
             user.email_user(subject=subject, message=message)
             return HttpResponse('registered succesfully and activation sent')
     else:
-        register_form = RegistrationForm()
-    return render(request, 'account/registration/register.html', {'form': register_form})
+        registerForm = RegistrationForm()
+    return render(request, 'account/registration/register.html', {'form': registerForm})
 
 
 def account_activate(request, uidb64, token):
