@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 
 from basket.basket import Basket
+from orders.views import payment_confirmation
 
 
 def order_placed(request):
