@@ -18,7 +18,7 @@ from .tokens import account_activation_token
 def dashboard(request):
     orders = user_orders(request)
     return render(request,
-                  'account/user/dashboard.html',
+                  'account/dashboard/dashboard.html',
                   {'section': 'profile', 'orders': orders})
 
 
@@ -33,7 +33,7 @@ def edit_details(request):
         user_form = UserEditForm(instance=request.user)
 
     return render(request,
-                  'account/user/edit_details.html', {'user_form': user_form})
+                  'account/dashboard/edit_details.html', {'user_form': user_form})
 
 
 @login_required
@@ -46,16 +46,16 @@ def delete_user(request):
 
 
 def account_register(request):
-
+    
     if request.user.is_authenticated:
         return redirect('account:dashboard')
 
     if request.method == 'POST':
-        registerForm = RegistrationForm(request.POST)
-        if registerForm.is_valid():
-            user = registerForm.save(commit=False)
-            user.email = registerForm.cleaned_data['email']
-            user.set_password(registerForm.cleaned_data['password'])
+        register_form = RegistrationForm(request.POST)
+        if register_form.is_valid():
+            user = register_form.save(commit=False)
+            user.email = register_form.cleaned_data['email']
+            user.set_password(register_form.cleaned_data['password'])
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
@@ -67,10 +67,10 @@ def account_register(request):
                 'token': account_activation_token.make_token(user),
             })
             user.email_user(subject=subject, message=message)
-            return HttpResponse('registered succesfully and activation sent')
+            return render(request, 'account/registration/register_email_confirm.html', {'form': register_form})
     else:
-        registerForm = RegistrationForm()
-    return render(request, 'account/registration/register.html', {'form': registerForm})
+        register_form = RegistrationForm()
+    return render(request, 'account/registration/register.html', {'form': register_form})
 
 
 def account_activate(request, uidb64, token):
