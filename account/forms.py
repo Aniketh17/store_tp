@@ -17,16 +17,16 @@ class UserAddressForm(forms.ModelForm):
         )
         self.fields["phone"].widget.attrs.update({"class": "form-control mb-2 account-form", "placeholder": "Phone"})
         self.fields["address_line"].widget.attrs.update(
-            {"class": "form-control mb-2 account-form", "placeholder": "Full Name"}
+            {"class": "form-control mb-2 account-form", "placeholder": "Address line"}
         )
         self.fields["address_line2"].widget.attrs.update(
-            {"class": "form-control mb-2 account-form", "placeholder": "Full Name"}
+            {"class": "form-control mb-2 account-form", "placeholder": "Address line2"}
         )
         self.fields["town_city"].widget.attrs.update(
-            {"class": "form-control mb-2 account-form", "placeholder": "Full Name"}
+            {"class": "form-control mb-2 account-form", "placeholder": "Town City"}
         )
         self.fields["postcode"].widget.attrs.update(
-            {"class": "form-control mb-2 account-form", "placeholder": "Full Name"}
+            {"class": "form-control mb-2 account-form", "placeholder": "Postcode"}
         )
 
 
