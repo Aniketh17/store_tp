@@ -1,12 +1,12 @@
 import json
 
-from account.models import Address
-from basket.basket import Basket
+from core.apps.account.models import Address
+from core.apps.basket.basket import Basket
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
-from orders.models import Order, OrderItem
+from core.apps.orders.models import Order, OrderItem
 from paypalcheckoutsdk.orders import OrdersGetRequest
 
 from .paypal import PayPalClient

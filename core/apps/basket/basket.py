@@ -1,8 +1,8 @@
 from decimal import Decimal
 
-from checkout.models import DeliveryOptions
+from core.apps.checkout.models import DeliveryOptions
 from django.conf import settings
-from store.models import Product
+from core.apps.store.models import Product
 
 
 class Basket:
