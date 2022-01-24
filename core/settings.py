@@ -1,13 +1,13 @@
 import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv("API_KEY")
+SECRET_KEY = 'django-insecure-m=lyzsfr29jo@3t54+k=tlck*8y_#7o6m_xy)w97@7dgmca0zx'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
