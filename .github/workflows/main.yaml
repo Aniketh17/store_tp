@@ -35,6 +35,14 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run migrations
+        env:
+          DJANGO_SECRET_KEY: CI_CD_TEST_KEY
+          POSTGRES_DB: ecommerce
+          POSTGRES_HOST: localhost
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_PORT: 5432
+          DEBUG: "0"
         run: python manage.py migrate
 
       - name: Run Tests
