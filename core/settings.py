@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 
 from django.core.management.utils import get_random_secret_key
@@ -84,10 +85,17 @@ if os.environ.get('GITHUB_WORKFLOW'):
         }
     }
 
-if os.getenv("DATABASE_URL", None) is not None:
+elif os.getenv("DATABASE_URL", None) is not None:
     DATABASES = {
         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
     }
+    if len(sys.argv) > 0 and sys.argv[1] == 'collectstatic':
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.sqlite3",
+                "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+            }
+        }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
