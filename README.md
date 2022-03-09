@@ -32,11 +32,18 @@ Then install the project dependencies with
 pip install -r requirements.txt
 ```
 
+Create .env file from the .env.example file
+
+```
+cp .env.example .env
+```
+
 Now you can run the project with this command
 
 ```
 python manage.py runserver
 ```
+
 
 **Note** if you want payments to work you will need to enter your own Stripe API keys into the `.env` file in the settings files.
 
