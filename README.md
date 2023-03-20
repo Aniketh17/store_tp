@@ -51,5 +51,5 @@ python manage.py runserver
 
 ## Support
 
-If you'd like to support this project and all the other open source work on this organization, you can use the following options
+If you'd like to support this project and all the other open source work on this organization, you can use the following options.
 
